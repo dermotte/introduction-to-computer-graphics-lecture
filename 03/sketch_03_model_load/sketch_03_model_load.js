@@ -1,3 +1,8 @@
+/**
+* Note that you have to run this file on a web server, otherwise the model won't load.
+* see https://github.com/processing/p5.js/wiki/Local-server
+* and https://p5js.org/get-started/
+*/
 let t;
 
 function preload() {
