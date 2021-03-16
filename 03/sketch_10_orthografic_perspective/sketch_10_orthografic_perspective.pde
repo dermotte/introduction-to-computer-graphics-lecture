@@ -9,7 +9,7 @@ void draw() {
   background(255);
   if (ortho) ortho();
   else perspective();
-  camera(mouseX, mouseY,  200, // eye 
+  camera(mouseX, mouseY,  200, // eye
       320, 240, 0, // target
       0, 1, 0); // up
   translate(320, 240);
