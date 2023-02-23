@@ -14,10 +14,21 @@ function draw() {
   v1.x = mouseX;
   v1.y = mouseY;
   // draw:
-  line(0, 0, v1.x, v1.y);
-  line(0, 0, v2.x, v2.y);
+  paintArrow(createVector(0, 0), v1);
+  paintArrow(createVector(0, 0), v2);
   // compute dot product:
   let product = v1.x*v2.x + v1.y*v2.y;
   // print(product);
   text("dot product is "+product, 200, 200);
+}
+
+function paintArrow(base, vec) {
+  push();
+  translate(base.x, base.y);
+  line(0, 0, vec.x, vec.y);
+  rotate(vec.heading());
+  let arrowSize = 7;
+  translate(vec.mag() - arrowSize, 0);
+  triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+  pop();
 }

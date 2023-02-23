@@ -14,21 +14,33 @@ function setup() {
   // v3 = p5.Vector.sub(v1, v2);
 
   // just for visualization:
-  strokeWeight(2);
+  noFill();
+  strokeWeight(3);  
 }
 
 function draw() {
   background(0);
+  let base = createVector(100, 100);
   // v1 in draw()
   stroke("#FFFFFF");
-  line(0, 0, v1.x, v1.y);
-  ellipse(v1.x, v1.y, 7, 7);
+  paintArrow(base, v1);
+  // ellipse(v1.x, v1.y, 7, 7);
   // v2 in draw()
   stroke("#7777FF");
-  line(0, 0, v2.x, v2.y);
-  ellipse(v2.x, v2.y, 7, 7);
+  paintArrow(p5.Vector.add(base, v1), p5.Vector.mult(v2, -1));
   // v3 in draw()
   stroke("#77FF77");
-  line(0, 0, v3.x, v3.y);
-  ellipse(v3.x, v3.y, 7, 7);
+  paintArrow(base, v3);
+}
+
+// draw an arrow for a vector at a given base position
+function paintArrow(base, vec) {
+  push();
+  translate(base.x, base.y);
+  line(0, 0, vec.x, vec.y);
+  rotate(vec.heading());
+  let arrowSize = 7;
+  translate(vec.mag() - arrowSize, 0);
+  triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+  pop();
 }

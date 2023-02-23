@@ -22,8 +22,17 @@ function draw() {
 
   // paint the vector
   let scalar = 50;
-  ellipse(320+c2mouse.x*scalar, 240+c2mouse.y*scalar, 10, 10);
-  line (320, 240, 320+c2mouse.x*scalar, 240+c2mouse.y*scalar);
-  // line (320, 240, 320+c2mouse.x, 240+c2mouse.y);
+  paintArrow(createVector(320, 240), p5.Vector.mult(c2mouse, scalar))
+}
 
+// draw an arrow for a vector at a given base position
+function paintArrow(base, vec) {
+  push();
+  translate(base.x, base.y);
+  line(0, 0, vec.x, vec.y);
+  rotate(vec.heading());
+  let arrowSize = 7;
+  translate(vec.mag() - arrowSize, 0);
+  triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+  pop();
 }
